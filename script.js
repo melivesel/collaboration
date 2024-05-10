@@ -1,58 +1,64 @@
-const characterChoice = document.querySelector('#searchresult');
 
-function getRandomNumber() {
-    // Generate a random decimal number between 0 (inclusive) and 1 (exclusive)
-    const randomNumber = Math.random();
-    
-    // Scale the random number to be between 1 and 25
-    const scaledNumber = Math.floor(randomNumber * 25);
-    
-    return scaledNumber;
+const appendImageUrlToDiv = function(character) {
+    const apiUrlGif = 'https://api.giphy.com/v1/gifs/search?api_key=IeRo8C6Ohj2ZFVaLuyBHDqJ5VMCSxDiv&q=' + character + '&channel=@marvel&limit=25&offset=0&rating=g&lang=en';
+
+    fetch(apiUrlGif, { cache: 'reload' })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            const randomNumber = Math.floor(Math.random() * data.data.length);
+            const gifId = data.data[randomNumber].id;
+            const embedUrl = `https://giphy.com/embed/${gifId}`;
+
+            // Set the Giphy embed URL to the iframe
+            const iframeElement = document.createElement('iframe');
+            iframeElement.src = embedUrl;
+            iframeElement.width = '480';
+            iframeElement.height = '270';
+            iframeElement.frameBorder = '0';
+            iframeElement.className = 'giphy-embed';
+            iframeElement.allowFullscreen = true;
+
+            // Append the iframe to the div with id "searchresult"
+            const searchResultDiv = document.getElementById('searchresult');
+            searchResultDiv.innerHTML = ''; // Clear existing content
+            searchResultDiv.appendChild(iframeElement);
+
+            // Set the cookie after fetching the data
+            document.cookie = "cookieName=cookieValue; Secure";
+
+            return embedUrl;
+        });
+};
+
+// Call the function with the desired character
+appendImageUrlToDiv('ironman');
+
+// Generate a timestamp in milliseconds
+const timestamp = new Date().getTime();
+
+// Construct the API URL with the timestamp parameter
+const baseUrl = 'https://gateway.marvel.com/v1/public/';
+
+function getMarvel(url) {
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+};
+function getServices() {
+    fetch("./vendorapis.json")
+        .then(function (data) {
+            const publicKey = data.marvel.publicKey;
+            const privateKey = data.marvel.privateKey;
+            const timestamp = new Date().getTime();
+            const url = `${baseUrl}characters?apikey=${publicKey}&ts=${timestamp}&hash=${MD5(timestamp + privateKey + publicKey)}`;
+//http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
+getMarvel(url);
+        });
 }
 
-function generateTimestamp() {
-    const currentDateTime = new Date();
-    const timestamp = currentDateTime.toISOString();
-    return timestamp;
-    
-}
-
-const randomNumber = getRandomNumber();
-console.log(randomNumber);
-
-const timestamp = generateTimestamp(); // Generate a timestamp using the function we discussed earlier
-const apiUrlGif = 'https://api.giphy.com/v1/gifs/search?api_key=IeRo8C6Ohj2ZFVaLuyBHDqJ5VMCSxDiv&q=ironman&channel=@marvel&limit=25&offset=0&rating=g&lang=en&';
-const apiUrlComics = `https://gateway.marvel.com:443/v1/public/comics?characters=spider%20man&apikey=f99ff0ebd9b29727ddc4d22f632170a4&`;
-
-
-fetch(apiUrlGif, {
-    cache: 'reload'
-})
-.then(function (response) {
-    return response.json();
-})
-.then(function (data) {
-    console.log(data);
-    const imageUrl = data.data[randomNumber].embed_url;
-    console.log(imageUrl);
-
-    // Set the cookie after fetching the data
-    document.cookie = "cookieName=cookieValue; Secure";
-    
-    return imageUrl;
-});
-fetch(apiUrlComics, {
-    cache: 'reload'
-})
-.then(function (response) {
-    return response.json();
-})
-.then(function (data) {
-    console.log(data);
-    
-
-    // Set the cookie after fetching the data
-    document.cookie = "cookieName=cookieValue; Secure";
-    
-});
 
