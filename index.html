@@ -2,59 +2,55 @@
 <html lang="en">
 g
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Why does the `<link>` to `style.css` have to come last? -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/style.css" />
-  <title>Comic Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        /* CSS for search bar */
+        .search-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .search-box {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+
 </head>
-
-<body class="flex-column min-100-vh">
-  <header class="hero">
-    <h1 class="app-title">
-      <!-- TODO: What does this `<i>` element do? Where do these classes come from? the i element is for icons these classes come from font awesome-->
-      
-      <i class="fab fa-github"></i> Git it Done!
-    </h1>
-    <p>Search for a GitHub user or click on a language to see a list of repositories and how many open issues they have!
-    </p>
-  </header>
-
-
-  <main class="flex-row justify-space-between">
-    <div class="col-12 col-md-4">
-
-      <div class="card">
-        <h3 class="card-header text-uppercase">Search By User</h3>
-        <form id="user-form" class="card-body">
-          <label class="form-label" for="username">Username</label>
-          <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-          <button type="submit" class="btn">Get User</button>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
+    <div class="search-container">
+        <form action="/search" method="get">
+            <input type="text" class="search-box" name="q" placeholder="Search...">
+            <button type="submit" class="search-button">Search</button>
         </form>
-      </div>
-
-      <div class="card">
-        <h3 class="card-header text-uppercase">Search By Topic</h3>
-        <div id="language-buttons" class="card-body">
-          <!-- TODO: How are the `data-language` attributes being used? -->
-          <button data-language="javascript" class="btn">JavaScript</button>
-          <button data-language="html" class="btn">HTML</button>
-          <button data-language="css" class="btn">CSS</button>
-        </div>
-      </div>
+    </div>
+    <div class="content">
+        <!-- Your website content goes here -->
+        <p>This is where your content will be displayed.</p>
     </div>
 
-    <div class="col-12 col-md-8">
-      <h2 class="subtitle">Showing Repositories for: <span id="repo-search-term"></span></h2>
-      <!-- TODO: Why is this `<div>` empty? What goes in here? -->
-      <div id="repos-container" class="list-group"></div>
-    </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
-  <script src="./js/homepage.js"></script>
-
+  <script src="script.js"></s>
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
 </body>
-
 </html>
