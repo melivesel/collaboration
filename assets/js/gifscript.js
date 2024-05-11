@@ -1,5 +1,5 @@
 const appendImageUrlToDiv = function(character) {
-    fetch('/assets/js/vendorapis.json')
+    fetch('./vendorapis.json')
         .then(function(response) {
             return response.json();
         })
@@ -30,9 +30,7 @@ const appendImageUrlToDiv = function(character) {
                     const searchResultDiv = document.getElementById('searchresult');
                     searchResultDiv.innerHTML = ''; // Clear existing content
                     searchResultDiv.appendChild(iframeElement);
-                    
-                    document.cookie = "cookieName=cookieValue; Secure";
-                    
+
                     return embedUrl;
                 });
         })
@@ -42,30 +40,4 @@ const appendImageUrlToDiv = function(character) {
 }
 // Call the function with the desired character
 appendImageUrlToDiv('ironman');
-
-// Generate a timestamp in milliseconds
-const timestamp = new Date().getTime();
-
-// Construct the API URL with the timestamp parameter
-const baseUrl = 'https://gateway.marvel.com/v1/public/';
-
-function getMarvel(url) {
-fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-};
-function getServices() {
-    fetch("./assests/js/vendorapis.json")
-        .then(function (data) {
-            const publicKey = data.marvel.publicKey;
-            const privateKey = data.marvel.privateKey;
-            const timestamp = new Date().getTime();
-            const url = `${baseUrl}characters?apikey=${publicKey}&ts=${timestamp}&hash=${MD5(timestamp + privateKey + publicKey)}`;
-//http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
-getMarvel(url);
-        });
-
-}
 
