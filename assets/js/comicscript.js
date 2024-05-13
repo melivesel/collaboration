@@ -4,16 +4,19 @@ fetch("https://gateway.marvel.com:443/v1/public/characters?name=Iron%20Man&apike
     })
     .then(function(data) {
         const characterId = data.data.results[0].id;
+        console.log(data);
 
         fetch(`https://gateway.marvel.com:443/v1/public/characters/${characterId}/comics?limit=5&apikey=f99ff0ebd9b29727ddc4d22f632170a4`)
             .then(function(response) {
                 return response.json();
+            
             })
             .then(function(data) {
                 const comics = data.data.results;
                 const searchResultDiv = document.getElementById('comicsuggestion');
                 searchResultDiv.innerHTML = ''; 
                 searchResultDiv.style.fontFamily = 'IBM Plex Sans, sans-serif';
+                console.log(data);
 
                 comics.forEach(function(comic) {
                     const comicTitle = comic.title;
