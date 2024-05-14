@@ -13,7 +13,7 @@ fetch("https://gateway.marvel.com:443/v1/public/characters?name=Iron%20Man&apike
             })
             .then(function(data) {
                 const comics = data.data.results;
-                const searchResultDiv = document.getElementById('comicsuggestion');
+                const searchResultDiv = document.getElementById('comicSuggestion');
                 searchResultDiv.innerHTML = ''; 
                 searchResultDiv.style.fontFamily = 'IBM Plex Sans, sans-serif';
                 console.log(data);

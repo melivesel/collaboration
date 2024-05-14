@@ -22,7 +22,7 @@ const appendImageUrlToDiv = function(character) {
             iframeElement.allowFullscreen = true;
 
             // Append the iframe to the div with id "searchresult"
-            const searchResultDiv = document.getElementById('searchresult');
+            const searchResultDiv = document.getElementById('gifContainer');
             searchResultDiv.innerHTML = ''; // Clear existing content
             searchResultDiv.appendChild(iframeElement);
 
