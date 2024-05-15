@@ -1,49 +1,62 @@
 const searchForm = document.getElementById('searchForm');
-    const searchInputEl = document.getElementById('searchInput');
-    const errorModal = document.getElementById("errorModal");
-    const span = document.getElementsByClassName("close")[0];
+const searchInputEl = document.getElementById('searchInput');
+const errorModal = document.getElementById("errorModal");
+const span = document.getElementsByClassName("close")[0];
 
-    searchForm.addEventListener('submit', formSubmitHandler);
+const calculateMD5 = function calculateMD5(str) {
+    return CryptoJS.MD5(str).toString();
+}
 
-    function formSubmitHandler(event) {
-        event.preventDefault(); // Prevent default form submission behavior
+searchForm.addEventListener('submit', formSubmitHandler);
 
-        const characterId = searchInputEl.value.trim();
-        const apiKey = 'f99ff0ebd9b29727ddc4d22f632170a4'; // Replace with your API key
-        const apiUrl = `https://gateway.marvel.com:443/v1/public/characters?orderBy=name&apikey=${apiKey}`;
+function formSubmitHandler(event) {
+    event.preventDefault(); // Prevent default form submission behavior
 
-   
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        errorModal.classList.add('is-active');
-                    } else {
-                        alert('Network response was not ok');
-                    }
-                    throw new Error('Network response was not ok');
+    const characterId = searchInputEl.value.trim(" "); // Get character ID from input field
+
+    const publicKey = "5036dfe4a87b973cb6bc2c1e2bfc70ef";
+    const privateKey = "84a5e37ccf26936499065124f5949d257ff53c89";
+    const ts = Math.floor(Date.now() / 1000);
+    const concatenatedString = `${ts}${privateKey}${publicKey}`;
+    console.log("Concatenated String:", concatenatedString);
+
+    const md5Hash = calculateMD5(concatenatedString);
+    const auth = `ts=${ts}&apikey=${publicKey}&hash=${md5Hash}`;
+
+    const apiUrl = `https://gateway.marvel.com:443/v1/public/characters/${characterId}?orderBy=name&${auth}`;
+    console.log(apiUrl);
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 404) {
+                    errorModal.classList.add('is-active');
+                } else {
+                    alert('Network response was not ok');
                 }
-                return response.json();
-            })
-            .then(data => {
-                const documents = extractDocuments(data);
-                const requestBody = {
-                    documents: documents,
-                    query: characterId
-                };
-                console.log(data);
-                console.log('Search request body:', requestBody);
-                displayFetchedData(data);
-            })
-              
-    function extractDocuments(data) {
-        return data.results;
-    }
+            }
+            return response.json();
+        })
+        .then(data => {
+            const documents = extractDocuments(data);
+            const requestBody = {
+                documents: documents,
+                query: characterId
+            };
+            console.log(data);
+            console.log('Search request body:', requestBody);
+            displayFetchedData(data);
+        });
+}
 
-    function displayFetchedData(data) {
-        // Implement this function to display the fetched data
-    }}
+function extractDocuments(data) {
+    return data.results;
+}
 
-    span.addEventListener('click', function() {
-        errorModal.classList.remove('is-active');
-    });
+function displayFetchedData(data) {
+    // Implement this function to display the fetched data
+}
+
+span.addEventListener('click', function() {
+    errorModal.classList.remove('is-active');
+});
