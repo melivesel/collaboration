@@ -10,7 +10,7 @@ const calculateMD5 = function calculateMD5(str) {
 searchForm.addEventListener('submit', formSubmitHandler);
 
 function formSubmitHandler(event) {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
 
     const characterId = searchInputEl.value.trim(""); // Get character ID from input field
 
