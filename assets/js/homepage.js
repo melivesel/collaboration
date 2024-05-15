@@ -12,7 +12,7 @@ searchForm.addEventListener('submit', formSubmitHandler);
 function formSubmitHandler(event) {
     event.preventDefault(); // Prevent default form submission behavior
 
-    const characterId = searchInputEl.value.trim(" "); // Get character ID from input field
+    const characterId = searchInputEl.value.trim(""); // Get character ID from input field
 
     const publicKey = "5036dfe4a87b973cb6bc2c1e2bfc70ef";
     const privateKey = "84a5e37ccf26936499065124f5949d257ff53c89";
@@ -23,7 +23,7 @@ function formSubmitHandler(event) {
     const md5Hash = calculateMD5(concatenatedString);
     const auth = `ts=${ts}&apikey=${publicKey}&hash=${md5Hash}`;
 
-    const apiUrl = `https://gateway.marvel.com:443/v1/public/characters/${characterId}?orderBy=name&${auth}`;
+    const apiUrl = `https://gateway.marvel.com:443/v1/public/characters/${characterId}/comics?format=comic&formatType=comic&noVariants=false&hasDigitalIssue=true&orderBy=title&limit=10${auth}`;
     console.log(apiUrl);
 
     fetch(apiUrl)
