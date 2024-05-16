@@ -17,7 +17,7 @@ Melissa https://github.com/melivesel
 
 Jermar https://github.com/Jermar318
 
-Vaughn https://github.com/vaughanknouse
+Vaughan https://github.com/vaughanknouse
 
 Kyle https://github.com/kdolan28
 
@@ -26,6 +26,9 @@ Marvel API https://developer.marvel.com/
 Git API https://developers.giphy.com/
 
 Foundation Framework https://get.foundation/
+
+## Deployed Application Link
+https://melivesel.github.io/collaboration/
 
 ## License
 

@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +13,16 @@
 <body>
 <div class="hero-full-screen">
     <div class="top-content-section">
+</head>
+<body>
+<div class="hero-full-screen">
+    <div class="top-content-section">
         <div class="top-bar">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li><a href="#">⭐Favorites</a></li>
+                </ul>
+            </div>
             <div class="top-bar-left">
                 <ul class="menu">
                     <li><a href="#">⭐Favorites</a></li>
@@ -22,15 +32,24 @@
     </div>
 
     <div class="middle-content-section">
+    </div>
+
+    <div class="middle-content-section">
         <h1>Welcome to the Marvel Fan Page!</h1>
-        <form>
-        <div class="input-group input-group-rounded">
-          <input class="input-group-field" type="search" id = "search">
-          <div class="input-group-button">
-            <input type="text" name ="character" class="button secondary" value="Search" id="save">
-            <div id="msg"></div>
+        <form id="searchForm">
+            <div class="input-group input-group-rounded">
+                <input id="searchInput" class="input-group-field" type="search">
+                <div class="input-group-button">
+                    <input type="submit" class="button secondary" value="Search" id="searchButton">
+                </div>
+            </div>
+            <!-- The Modal -->
+            <div id="errorModal" class="modal">
+              <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p>404 Error: Where did that bring you? Back to me</p>
+              </div>
           </div>
-        </div>        
         </form>
       </div>
       <!-- The Modal -->
@@ -43,18 +62,16 @@
     
       <div class="bottom-content-section" data-magellan data-threshold="0">
         <a href="#main-content-section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 12c0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12 12-5.373 12-12zm-18.005-1.568l1.415-1.414 4.59 4.574 4.579-4.574 1.416 1.414-5.995 5.988-6.005-5.988z"/></svg></a>
-      </div>
-    
     </div>
-    
-    <div id="main-content-section" data-magellan-target="main-content-section">
-      <!-- main content goes here -->
-    </div>
-    
-    
-    
-    <!-- Compressed JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
-    <script src="./assets/js/search.js"></script>
-  </body>
+</div>
+<div id="main-content-section" data-magellan-target="main-content-section">
+    <!-- main content goes here -->
+</div>
+<!-- Compressed JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+<script src="vendorapis.json"></script>
+<script src="/assets/js/comicscript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cryptography-js/4.1.1/md5.js"></script>
+</script>
+</body>
 </html>
