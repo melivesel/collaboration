@@ -2,12 +2,19 @@ const searchResultDiv = document.getElementById('comicSuggestion');
 
 document.addEventListener('DOMContentLoaded', function() {
     const searchNameElement = document.getElementById('searchName');
-    const characterName = searchNameElement.textContent.trim();
+    const characterName = searchNameElement.textContent.trim()
     console.log('Character Name:', characterName);
 
     const appendComicsToDiv = function(character) {
         fetch(`https://gateway.marvel.com:443/v1/public/characters?name=${character}&apikey=f99ff0ebd9b29727ddc4d22f632170a4`)
             .then(function(response) {
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        errorModal.classList.add('is-active');
+                    } else {
+                        alert('Network response was not ok');
+                    }
+                }
                 return response.json();
             })
             .then(function(data) {
