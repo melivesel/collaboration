@@ -34,6 +34,12 @@ const searchForm = document.getElementById('searchForm');
                 console.log(data);
                 console.log('Search request body:', requestBody);
                 displayFetchedData(data);
+
+                const jsonData = JSON.stringify(data);
+                localStorage.setItem('apiData', jsonData);
+                console.log('Data stored in localStorage');
+            }).catch(error => {
+                console.error('Failed to fetch and store data:', error);
             })
               
     function extractDocuments(data) {
@@ -47,3 +53,19 @@ const searchForm = document.getElementById('searchForm');
     span.addEventListener('click', function() {
         errorModal.classList.remove('is-active');
     });
+
+    function getData() {
+        const storedData = localStorage.getItem('apiData');
+
+        if (storedData) {
+            const data = JSON.parse(storedData);
+            return data;
+        } else {
+            console.log('No data found in localStorage');
+            return null;
+        }
+    }
+
+const storedData = getData();
+console.log('Retrieved data:', storedData)
+
