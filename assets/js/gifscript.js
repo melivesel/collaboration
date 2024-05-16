@@ -1,3 +1,5 @@
+const characterName = document.getElementById('searchName');
+
 const appendImageUrlToDiv = function(character) {
     const apiKey = 'IeRo8C6Ohj2ZFVaLuyBHDqJ5VMCSxDiv';
     const apiUrlGif = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${character}&channel=@marvel&limit=25&offset=0&rating=g&lang=en`;
@@ -25,6 +27,10 @@ const appendImageUrlToDiv = function(character) {
             const searchResultDiv = document.getElementById('gifContainer');
             searchResultDiv.innerHTML = ''; // Clear existing content
             searchResultDiv.appendChild(iframeElement);
+            const gifTitleElement = document.createElement('h2');
+            gifTitleElement.textContent = `You Chose: ${characterName.textContent}`;
+            searchResultDiv.insertBefore(gifTitleElement, searchResultDiv.firstChild);
+            
 
             return embedUrl;
         })
@@ -34,4 +40,4 @@ const appendImageUrlToDiv = function(character) {
 };
 
 // Call the function with the desired character
-appendImageUrlToDiv('ironman');
+appendImageUrlToDiv(characterName.textContent);

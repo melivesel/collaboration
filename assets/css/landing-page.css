@@ -4,6 +4,21 @@ h1 {
     margin-top: 2.8rem;
   }
   
+.modal-content {
+  display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  padding: 7rem;
+  color: white;
+  text-align: center;
+  background: url("https://images.hdqwalls.com/download/1/thanos-avengers-infinity-4k-z8.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
   .hero-full-screen {
     height: 100vh;
     display: -webkit-flex;
